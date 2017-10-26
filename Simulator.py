@@ -4,11 +4,15 @@ import pygame as pgm
 from pygame import *
 
 from GUIelements import *
+from storing import *
 
 # Checks if coordinates are inside rectangular area
 def twoD_in(pos, area):
+    
     if (area[0] <= pos[0] <= area[2]) and (area[1] <= pos[1] <= area[3]):
+        
         return True
+    
     return False
 
 # Normilizes planets system so that mass centre does not move
@@ -42,9 +46,9 @@ def merge(ps):
                            (ps[i][2]*ps[i][6]+ps[j][2]*ps[j][6])/M,
                            (ps[i][3]*ps[i][6]+ps[j][3]*ps[j][6])/M,
                            0,0,M,
-                           (round(ps[i][6]*ps[i][7][0]+ps[j][6]*ps[j][7][0])/M,
-                            round(ps[i][6]*ps[i][7][1]+ps[j][6]*ps[j][7][1])/M,
-                            round(ps[i][6]*ps[i][7][2]+ps[j][6]*ps[j][7][2])/M),
+                           (round((ps[i][6]*ps[i][7][0]+ps[j][6]*ps[j][7][0])/M),
+                            round((ps[i][6]*ps[i][7][1]+ps[j][6]*ps[j][7][1])/M),
+                            round((ps[i][6]*ps[i][7][2]+ps[j][6]*ps[j][7][2])/M)),
                            sqrt(M)])
                 ps.pop(j)
                 ps.pop(i)                
@@ -129,7 +133,7 @@ class Simulator(scene):
 
         self.labels[1].act = True
         
-        # Planet data structure: [x,y,xv,yv,xa,ya,m,color,r]
+        # Planet data structure: [x, y, xv, yv, xa, ya, m, color, r]
         self.planets = []
         
         self.system = Surface(surface.get_size())
@@ -265,7 +269,7 @@ class Simulator(scene):
                 for p in self.planets:
                     
                     coords = [round(p[0]),round(p[1])]
-                    
+                 
                     pgm.draw.circle(self.system, p[7], coords, round(p[8]), 0)
                     
                     pgm.draw.line(self.traces, p[7], coords, coords, 1)
@@ -280,7 +284,7 @@ class Simulator(scene):
                                     [self.x_down, self.y_down],
                                     round(self.r_growth), 0)
 
-                    self.r_growth += self.time - self.t_growth
+                    self.r_growth += (self.time - self.t_growth)*0.1
                     
 
                 self.surface.blit(self.traces, ZERO)

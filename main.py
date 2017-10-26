@@ -4,6 +4,7 @@ from pygame import *
 from GUIelements import *
 from MainMenu import *
 from Simulator import Simulator
+from storing import *
 
 pgm.init()
 
