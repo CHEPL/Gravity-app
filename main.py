@@ -1,4 +1,3 @@
-#from time import clock as clc
 import pygame as pgm
 from pygame import *
 
@@ -7,8 +6,6 @@ from MainMenu import *
 from Simulator import Simulator
 
 pgm.init()
-
-win_size = (950, 950)
 
 screen = pgm.display.set_mode(win_size)
 pgm.display.set_caption("Gravity")
@@ -100,6 +97,6 @@ while run:
     Sim.sequence()
     pgm.display.update()
 
-    time += 0.001
+    time += TIMERATE
 
 pgm.quit()

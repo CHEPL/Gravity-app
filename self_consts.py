@@ -5,6 +5,8 @@ pygame.font.init()
 
 # Common
 
+win_size = (950, 950)
+
 ZERO = (0, 0)
 
 TIMERATE = 0.001
